@@ -1,4 +1,5 @@
 <?php
+include("../model/admindata.php");
 
 $adminFName = "";
 $adminLName = "";
@@ -12,8 +13,9 @@ $adminCv = "";
 $adminPhoto = "";
 $photoAllowed = array('png', 'jpg','jpeg');
 $CvAllowed = array('pdf');
-$sql="";
-$res="";
+
+$conObj="";
+$result ="";
 
 $adminFNameError = "";
 $adminLNameError = "";
@@ -191,20 +193,21 @@ if (isset($_POST["Admin_signup_submit"])) {
         }
 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bankDataBase";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-$sql = "INSERT INTO adminlogindata (email, password) VALUES ('$adminEmail','$adminPassword')";
-$res = $conn->query($sql);//execute query
+        // $servername = "localhost";
+        // $username = "root";
+        // $password = "";
+        // $dbname = "bankDataBase";
+        // $conn = new mysqli($servername, $username, $password, $dbname);
+        // if ($conn->connect_error) {
+        // die("Connection failed: " . $conn->connect_error);
+        // }
+        // $sql = "INSERT INTO adminlogindata (email, password) VALUES ('$adminEmail','$adminPassword')";
+        // $res = $conn->query($sql);//execute query
 
-$conn->close();
-
-
+        $admindb = new database();
+        $conObj=$admindb->openCon();
+        $result =$admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj);
+        //$admindb->conClose();
 
 
         if ($signUpComplete == true) {
@@ -216,10 +219,12 @@ $conn->close();
             $_SESSION['adminAddress'] = $adminAddress;
             $_SESSION['adminMobileNo'] = $adminMobileNo;
             $_SESSION['adminEmail'] = $adminEmail;
+            $_SESSION['adminPassword'] = $adminPassword;
             $_SESSION['admin_cvfileError'] = $admin_cvfileError;
             $_SESSION['admin_photofileError'] = $admin_photofileError;
             $_SESSION['adminKey'] = $adminKey;
             $_SESSION['adminPhoto'] = $adminPhoto;
+            $_SESSION['adminCv'] = $adminCv;
 
             header("Location:../view/adminSignUpComplete.php");
 

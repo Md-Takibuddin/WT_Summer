@@ -1,0 +1,42 @@
+<?php
+
+class database{
+
+    function openCon(){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "bankDataBase";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        }
+        return $conn;
+    }
+
+    function addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conn){
+        $sql = "INSERT INTO admindata (adminfname, adminlname,admindob,adminaddress,adminmobileno,adminemail ,adminpassword, adminkey,admincv,adminphoto) 
+                 VALUES ('$adminFName','$adminLName','$adminDOB','$adminAddress','$adminMobileNo','$adminEmail','$adminPassword','$adminKey','$adminCv','$adminPhoto')";
+        if($conn->query($sql)){
+            echo "Data Inserted";
+        }
+        else {
+            echo "Not Inserted";
+        }
+
+    }
+    function conClose(){
+        $conn ->close();
+    }
+
+
+}
+
+
+
+
+
+
+
+
+?>
