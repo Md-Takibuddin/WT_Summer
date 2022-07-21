@@ -18,13 +18,22 @@ class database{
         $sql = "INSERT INTO admindata (adminfname, adminlname,admindob,adminaddress,adminmobileno,adminemail ,adminpassword, adminkey,admincv,adminphoto) 
                  VALUES ('$adminFName','$adminLName','$adminDOB','$adminAddress','$adminMobileNo','$adminEmail','$adminPassword','$adminKey','$adminCv','$adminPhoto')";
         if($conn->query($sql)){
-            echo "Data Inserted";
+            echo "Sign Up Successful";
         }
         else {
-            echo "Not Inserted";
+            echo "Sign Up Failed.";
         }
 
     }
+
+    function checkMail($adminEmail,$conn){
+
+    $sql="SELECT adminemail FROM `admindata` where adminemail = '$adminEmail'";
+    return $conn->query($sql);
+
+    }
+
+
     function conClose(){
         $conn ->close();
     }

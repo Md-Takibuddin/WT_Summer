@@ -126,8 +126,7 @@ if (isset($_POST["Admin_signup_submit"])) {
             $cvName =  $_FILES["admin_cvfile"]["name"];
             $extCV = pathinfo($cvName, PATHINFO_EXTENSION);
 
-            if(in_array($extCV, $CvAllowed) && 
-            move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf")) {
+            if(in_array($extCV, $CvAllowed)) {
             $count++;
             $admin_cvfileError = "You have selected " . $_FILES["admin_cvfile"]["name"];
             $adminCv = 'files/cv/' . $_FILES["admin_cvfile"]["name"];
@@ -146,8 +145,7 @@ if (isset($_POST["Admin_signup_submit"])) {
         $photoName =  $_FILES["admin_photofile"]["name"];
         $extPhoto = pathinfo($photoName, PATHINFO_EXTENSION);
 
-        if (in_array($extPhoto, $photoAllowed) &&
-            move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg")) {
+        if (in_array($extPhoto, $photoAllowed)) {
             $count++;
             $admin_photofileError = "You have selected " . $_FILES["admin_photofile"]["name"];
             $adminPhoto = "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg";
@@ -161,54 +159,29 @@ if (isset($_POST["Admin_signup_submit"])) {
         $admin_photofileError = "Please choose a Photo.";
     }
 
+    $admindb = new database();
+    $conObj=$admindb->openCon();
+    $result =$admindb->checkMail($adminEmail,$conObj);
+
+    if ($count !=10) {
+        echo "Please Inter All Data";
+    }
+    elseif($count == 10 && $result ->num_rows >0){
+        echo "mail already exist. ";
+    }
+    
+
+    elseif($count == 10 && $result ->num_rows ==0) {
 
 
-    if ($count == 10) {
-        $formData = array(
-            'First Name:' => $adminFName,
-            'Last  Name:' => $adminLName,
-            'Date of Birth:' => $adminDOB,
-            'AdminAddress:' => $adminAddress,
-            'Mobile Number:' => $adminMobileNo,
-            'Email:' => $adminEmail,
-            'Password:' => $adminPassword,
-            'Admin Key:' => $adminKey,
-            'Uploaded CV:' => $adminCv,
-            'Uploaded Photo:' => $adminPhoto
-
-
-        );
-        $existingData = file_get_contents('../data/adminData.json');
-        $tempJsonData = json_decode($existingData);
-        $tempJsonData[] = $formData;
-        $jsonData = json_encode($tempJsonData, JSON_PRETTY_PRINT);
-
-        if (file_put_contents("../data/adminData.json", $jsonData)) {
-            $dataError = "Data successfully saved <br>";
-            $signUpComplete = true;
+        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj)){
+            $signUpComplete == true;
+            $admindb->conClose();
+            move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
+            move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
+    
         }
-
-        else {
-            $dataError = "No data saved";
-        }
-
-
-        // $servername = "localhost";
-        // $username = "root";
-        // $password = "";
-        // $dbname = "bankDataBase";
-        // $conn = new mysqli($servername, $username, $password, $dbname);
-        // if ($conn->connect_error) {
-        // die("Connection failed: " . $conn->connect_error);
-        // }
-        // $sql = "INSERT INTO adminlogindata (email, password) VALUES ('$adminEmail','$adminPassword')";
-        // $res = $conn->query($sql);//execute query
-
-        $admindb = new database();
-        $conObj=$admindb->openCon();
-        $result =$admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj);
-        //$admindb->conClose();
-
+   
 
         if ($signUpComplete == true) {
 
