@@ -18,10 +18,10 @@ class database{
         $sql = "INSERT INTO admindata (adminfname, adminlname,admindob,adminaddress,adminmobileno,adminemail ,adminpassword, adminkey,admincv,adminphoto) 
                  VALUES ('$adminFName','$adminLName','$adminDOB','$adminAddress','$adminMobileNo','$adminEmail','$adminPassword','$adminKey','$adminCv','$adminPhoto')";
         if($conn->query($sql)){
-            echo "Sign Up Successful";
+            return true;
         }
         else {
-            echo "Sign Up Failed.";
+            return false;
         }
 
     }
@@ -34,9 +34,9 @@ class database{
     }
 
 
-    function conClose(){
-        $conn ->close();
-    }
+    // function conClose(){
+    //     $conn ->close();
+    // }
 
 
 }

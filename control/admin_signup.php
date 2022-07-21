@@ -173,15 +173,11 @@ if (isset($_POST["Admin_signup_submit"])) {
     elseif($count == 10 && $result ->num_rows ==0) {
 
 
-        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj)){
+        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj) == true){
             $signUpComplete == true;
-            $admindb->conClose();
+            // $admindb->conClose();
             move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
             move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
-    
-        }
-   
-        if ($signUpComplete == true) {
 
             session_start();
             $_SESSION['adminFName'] = $adminFName;
@@ -198,8 +194,16 @@ if (isset($_POST["Admin_signup_submit"])) {
             $_SESSION['adminCv'] = $adminCv;
 
             header("Location:../view/adminSignUpComplete.php");
-
         }
+        else {
+            echo "Sign Up Failed";
+        }
+   
+        
+
+         
+
+        
 
     }
 
