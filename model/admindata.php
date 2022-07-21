@@ -26,6 +26,7 @@ class database{
 
     }
 
+    
     function checkMail($adminEmail,$conn){
 
     $sql="SELECT adminemail FROM `admindata` where adminemail = '$adminEmail'";
