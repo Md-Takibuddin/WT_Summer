@@ -170,7 +170,6 @@ if (isset($_POST["Admin_signup_submit"])) {
         echo "mail already exist. ";
     }
     
-
     elseif($count == 10 && $result ->num_rows ==0) {
 
 
@@ -182,7 +181,6 @@ if (isset($_POST["Admin_signup_submit"])) {
     
         }
    
-
         if ($signUpComplete == true) {
 
             session_start();

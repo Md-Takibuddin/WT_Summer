@@ -25,7 +25,6 @@ class database{
         }
 
     }
-
     
     function checkMail($adminEmail,$conn){
 
@@ -41,12 +40,5 @@ class database{
 
 
 }
-
-
-
-
-
-
-
 
 ?>
