@@ -38,7 +38,6 @@ include("../control/admin_login.php");
    
     </table>
     </form>
-    
 
     Don't have a account ?
     <a href= "adminsignup.php"> Sign up </a>

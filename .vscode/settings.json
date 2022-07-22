@@ -1,13 +1,22 @@
 {
    "cSpell.words": [
+      "adminaddress",
+      "admincv",
       "admindata",
       "admindb",
+      "admindob",
       "adminemail",
+      "adminfname",
+      "adminlname",
       "adminlogin",
+      "adminmobileno",
+      "adminpassword",
+      "adminphoto",
       "adminsignup",
       "cvfile",
       "homephoto",
       "mobileno",
+      "myrow",
       "photofile",
       "servername",
       "tmpdata"

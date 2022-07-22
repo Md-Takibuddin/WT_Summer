@@ -33,6 +33,20 @@ class database{
 
     }
 
+    function checkLogin($adminGivenEmail,$adminGivenPassword,$conn){
+
+        $sql ="SELECT adminemail,adminpassword FROM `admindata` WHERE adminemail='$adminGivenEmail' AND adminpassword='$adminGivenPassword'";
+        return $conn->query($sql);
+    }
+
+    function viewProfile($adminEmail,$conn){
+        
+        $sql="SELECT * FROM `admindata` WHERE adminemail = '$adminEmail'";
+        return $conn->query($sql);
+
+
+    }
+
 
     // function conClose(){
     //     $conn ->close();

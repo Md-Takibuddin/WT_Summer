@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("../model/admindata.php");
 
 if (empty($_SESSION['email'])) {
 
@@ -12,20 +13,31 @@ if (empty($_SESSION['email'])) {
         $adminGivenEmail = $_POST["LoginEmail"];
         $adminGivenPassword = $_POST["LoginPassword"];
 
-        $tmpdata = file_get_contents("../data/adminData.json");
-        $adminJsonData = json_decode($tmpdata, true);
 
         if (!empty($adminGivenEmail) && !empty($adminGivenPassword)) {
 
-            foreach ($adminJsonData as $data) {
 
-                if ($data["Email:"] == $adminGivenEmail && $data["Password:"] == $adminGivenPassword) {
+            $admindb = new database();
+            $conObj=$admindb->openCon();
+            $result =$admindb->checkLogin($adminGivenEmail,$adminGivenPassword,$conObj);
+            if ($result ->num_rows ==1){
 
-                    $_SESSION['email'] = $data["Email:"];
-                    $_SESSION['password'] = $data["Password:"];
+                    $_SESSION['email'] = $adminGivenEmail;
+                    $_SESSION['password'] = $adminGivenPassword;
                     header("location: ../view/adminDashboard.php");
-                }
+
             }
+
+
+            // foreach ($adminJsonData as $data) {
+
+            //     if ($data["Email:"] == $adminGivenEmail && $data["Password:"] == $adminGivenPassword) {
+
+            //         $_SESSION['email'] = $data["Email:"];
+            //         $_SESSION['password'] = $data["Password:"];
+            //         header("location: ../view/adminDashboard.php");
+            //     }
+            // }
         }
         else {
             $loginError = "Email Or Password is empty.";

@@ -129,7 +129,7 @@ if (isset($_POST["Admin_signup_submit"])) {
             if(in_array($extCV, $CvAllowed)) {
             $count++;
             $admin_cvfileError = "You have selected " . $_FILES["admin_cvfile"]["name"];
-            $adminCv = 'files/cv/' . $_FILES["admin_cvfile"]["name"];
+            $adminCv = "../files/cv/" .  $adminFName . "_" . date("Y-m-d") . ".pdf";
             }
             else {
                 $admin_cvfileError = "Please select a PDF file format.";
