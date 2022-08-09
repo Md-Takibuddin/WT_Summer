@@ -146,37 +146,22 @@ $admindb = new database();
     if($count == 0){ 
         if($admindb->updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conObj) == true){
             if ($countCv==1) {
+                unlink($oldCv);
              move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
             }
             if ($countPhoto==1) {
+                unlink($oldPhoto);
             move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
-            }
+            }   
 
-            echo "updated";
+            header("Location:../view/adminProfile.php");
         }
-            //             // $signUpComplete == true;
-
-//             $_SESSION['adminFName'] = $adminFName;
-//             $_SESSION['adminLName'] = $adminLName;
-//             $_SESSION['adminDOB'] = $adminDOB;
-//             $_SESSION['adminAddress'] = $adminAddress;
-//             $_SESSION['adminMobileNo'] = $adminMobileNo;
-//             $_SESSION['adminEmail'] = $adminEmail;
-//             // $_SESSION['adminPassword'] = $adminPassword;
-//             $_SESSION['admin_cvfileError'] = $admin_cvfileError;
-//             $_SESSION['admin_photofileError'] = $admin_photofileError;
-//             $_SESSION['adminKey'] = $adminKey;
-//             $_SESSION['adminPhoto'] = $adminPhoto;
-//             $_SESSION['adminCv'] = $adminCv;
-
-//             echo "Data updated";
-//         }
-//         else {
-//             echo "Sign Up Failed";
-//         }
-
-
-        
+        else $dataError = "Data not Updated";
+        header("Location:../view/adminProfile.php");
+    }
+    else {
+        echo $dataError = "Please try again";
+        header("Location:../view/adminProfile.php");
     }
 
 }

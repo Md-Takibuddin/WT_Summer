@@ -7,12 +7,10 @@ include("../control/adminProfileUpdate.php");
 <html>
     <link rel="stylesheet" href="../css/style.css">
     <a href="adminDashboard.php"> Back </a>
+    <td> <?php echo $dataError; ?> </td>
 
 <body>
-
-
 <font size="10" color="forestgreen"><b>Profile</b></font>
-
 <form  method="POST" enctype="multipart/form-data">
 <table>
 
