@@ -28,10 +28,13 @@ $adminKeyError = "";
 $admin_cvfileError = "";
 $admin_photofileError = "";
 $dataError = "";
+$oldPhoto=$oldCv="";
 $signUpComplete = false;
 
 
 $count = 0;
+$countCv=0;
+$countPhoto=0;
 
 if (isset($_POST["Admin_update_data"])) {
 
@@ -47,60 +50,49 @@ if (isset($_POST["Admin_update_data"])) {
     $adminPhoto = $_FILES["admin_photofile"]["name"];
 
 
+echo $adminFName ;
+echo $adminLName ;
+echo $adminDOB ;
+echo $adminAddress ;
+echo $adminMobileNo ;
+echo $adminEmail;
+echo $adminKey ;
+echo $adminCv ;
+echo $adminPhoto ;
 
     if (is_numeric($adminFName) || is_numeric($adminLName)) {
+        $count++;
         $adminFNameError = "First name and Last Name should not contain numeric value";
     }
+
     elseif (empty($adminFName)) {
-        $adminFNameError = "First name can't be Empty";
-    }
-    else {
         $count++;
+        $adminFNameError = "First name can't be Empty";
     }
 
     if (empty($adminDOB)) {
-        $adminDOBError = " Date of Birth can't be Empty ";
-    }
-    else {
         $count++;
+        $adminDOBError = " Date of Birth can't be Empty ";
     }
 
     if (empty($adminAddress)) {
+        $count++;
         $adminAddressError = "Address can't be Empty";
     }
-    else{
-        $count++;
-    }
+
 
     if (empty($adminMobileNo)) {   
+        $count++;
         $adminMobileNoError = "Mobile No can't be Empty ";
     }
     else {
         if (preg_match('/^[0]{1}[1]{1}[0-9]{9}$/', $adminMobileNo)){
-        $count++;
         }
         else {
+            
+            $count++;
             $adminMobileNoError = "Please give a valid phone number. ";
         }
-    }
-
-    if (empty($adminEmail)) {
-        $adminEmailError = "Email can't be Empty";
-    }
-    else {
-        $count++;
-    }
-
-
-    if (empty($adminKey)) {
-        $adminKeyError = "Admin key can't be Empty";
-    }
-    else {
-        if ($adminKey == "XYZ123") {
-            $count++;
-        }
-        else
-            $adminKeyError = "Wrong Admin key";
     }
 
 
@@ -109,17 +101,18 @@ if (isset($_POST["Admin_update_data"])) {
             $extCV = pathinfo($cvName, PATHINFO_EXTENSION);
 
             if(in_array($extCV, $CvAllowed)) {
-            $count++;
-            $admin_cvfileError = "You have selected " . $_FILES["admin_cvfile"]["name"];
-            $adminCv = "../files/cv/" .  $adminFName . "_" . date("Y-m-d") . ".pdf";
+                $adminCv = "../files/cv/" .  $adminFName . "_" . date("Y-m-d") . ".pdf";
+                $countCv++;
+                $oldCv=$_SESSION['adminCv'];
             }
             else {
+                $count++;
                 $admin_cvfileError = "Please select a PDF file format.";
             }
 
     }
-    else {
-        $admin_cvfileError = "Please choose a PDF file.";
+    elseif (empty($adminCv)) {
+        $adminCv = $_SESSION['adminCv'] ;
     }
 
     if (!empty($adminPhoto)) {
@@ -127,64 +120,65 @@ if (isset($_POST["Admin_update_data"])) {
         $photoName =  $_FILES["admin_photofile"]["name"];
         $extPhoto = pathinfo($photoName, PATHINFO_EXTENSION);
 
-        if (in_array($extPhoto, $photoAllowed)) {
-            $count++;
-            $admin_photofileError = "You have selected " . $_FILES["admin_photofile"]["name"];
+        if (in_array($extPhoto, $photoAllowed)){
             $adminPhoto = "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg";
+            $countPhoto++;
+            $oldPhoto=$_SESSION['adminPhoto'];
+            
         }
         else {
-            $admin_photofileError = "Please choose a JPG/PNG file.";
+            $count++;
+            $admin_photofileError = "Please choose a JPG or PNG photo.";
         }
 
     }
     else {
-        $admin_photofileError = "Please choose a Photo.";
+        $adminPhoto=$_SESSION['adminPhoto'];
     }
 
-    $admindb = new database();
-    $conObj=$admindb->openCon();
-    $result =$admindb->checkMail($adminEmail,$conObj);
 
-    if ($count !=10) {
-        echo "Please Inter All Data";
-    }
-    elseif($count == 10 && $result ->num_rows >0){
-        echo "mail already exist. ";
-    }
-    
-    elseif($count == 10 && $result ->num_rows ==0) {
+$admindb = new database();
+ $conObj=$admindb->openCon();
 
+ echo "+".$adminEmail."+";
+// $admindb->updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conObj);
 
-        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj) == true){
-            $signUpComplete == true;
-            move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
+    if($count == 0){ 
+        if($admindb->updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conObj) == true){
+            if ($countCv==1) {
+             move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
+            }
+            if ($countPhoto==1) {
             move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
+            }
 
-            session_start();
-            $_SESSION['adminFName'] = $adminFName;
-            $_SESSION['adminLName'] = $adminLName;
-            $_SESSION['adminDOB'] = $adminDOB;
-            $_SESSION['adminAddress'] = $adminAddress;
-            $_SESSION['adminMobileNo'] = $adminMobileNo;
-            $_SESSION['adminEmail'] = $adminEmail;
-            $_SESSION['adminPassword'] = $adminPassword;
-            $_SESSION['admin_cvfileError'] = $admin_cvfileError;
-            $_SESSION['admin_photofileError'] = $admin_photofileError;
-            $_SESSION['adminKey'] = $adminKey;
-            $_SESSION['adminPhoto'] = $adminPhoto;
-            $_SESSION['adminCv'] = $adminCv;
-
-            header("Location:../view/adminSignUpComplete.php");
+            echo "updated";
         }
-        else {
-            echo "Sign Up Failed";
-        }
+            //             // $signUpComplete == true;
 
+//             $_SESSION['adminFName'] = $adminFName;
+//             $_SESSION['adminLName'] = $adminLName;
+//             $_SESSION['adminDOB'] = $adminDOB;
+//             $_SESSION['adminAddress'] = $adminAddress;
+//             $_SESSION['adminMobileNo'] = $adminMobileNo;
+//             $_SESSION['adminEmail'] = $adminEmail;
+//             // $_SESSION['adminPassword'] = $adminPassword;
+//             $_SESSION['admin_cvfileError'] = $admin_cvfileError;
+//             $_SESSION['admin_photofileError'] = $admin_photofileError;
+//             $_SESSION['adminKey'] = $adminKey;
+//             $_SESSION['adminPhoto'] = $adminPhoto;
+//             $_SESSION['adminCv'] = $adminCv;
+
+//             echo "Data updated";
+//         }
+//         else {
+//             echo "Sign Up Failed";
+//         }
+
+
+        
     }
 
-}
-else {
-    echo"not set";
 }
 
 ?>

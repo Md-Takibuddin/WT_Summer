@@ -25,7 +25,8 @@ if ($result ->num_rows >0){
 
     }
 }
-mysqli_close($conObj);
+
+// mysqli_close($conObj);
 
 
 ?>

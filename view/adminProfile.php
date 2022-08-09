@@ -1,6 +1,7 @@
 <?php
-require_once("../control/adminProfileData.php");
+include("../control/adminProfileData.php");
 include("../control/adminProfileUpdate.php");
+
 ?>
 
 <html>
@@ -22,37 +23,40 @@ include("../control/adminProfileUpdate.php");
     </tr>
     <tr>
         <td>First Name: </td>
-        <td> <input class="hide select" type="text" readonly name="admin_fname" value="<?php echo $_SESSION['adminFName']; ?>" > </td>
-
+        <td> <input class="hide select" type="text" readonly name="admin_fname" value="<?php echo $_SESSION['adminFName'];?>" > </td>
+        <td> <?php echo $adminFNameError ; ?> </td>
     </tr>
     <tr>
         <td>Last Name: </td>
         <td> <input class="hide select" type="text" readonly name="admin_lname"value="<?php echo $_SESSION['adminLName'];?>" > </td>
-
+        <td> <?php echo $adminLNameError; ?> </td>
     </tr>
     <tr>
         <td>Date of Birth: </td>
-        <td><input class="hide select" type="text" name="admin_dob" value=" <?php echo $_SESSION['adminDOB']; ?>"> </td>
+        <td><input class="hide select" type="text" name="admin_dob" value="<?php echo $_SESSION['adminDOB'];?>"> </td>
+        <td> <?php echo $adminDOBError; ?> </td>
     </tr> 
     <tr>
         <td>Address: </td>
-        <td> <input class="hide select" type="text"  name="admin_address" value="<?php echo $_SESSION['adminAddress']; ?>"> </td>
+        <td> <input class="hide select" type="text"  name="admin_address" value="<?php echo $_SESSION['adminAddress'];?>"> </td>
+        <td> <?php echo $adminAddressError; ?> </td>
     </tr>
     <tr>
         <td>Mobile No: </td>
-        <td > <input class="hide select" type="text" name="admin_mobileno" value="<?php echo $_SESSION['adminMobileNo']; ?> "></td>
+        <td > <input class="hide select" type="text" name="admin_mobileno" value="<?php echo $_SESSION['adminMobileNo'];?>"></td>
     </tr>
     <tr>
         <td>Email: </td>
-        <td><input  class="hide " type="text" name="admin_email" value=" <?php echo $_SESSION['adminEmail']; ?>" readonly> </td>
+        <td><input  class="hide " type="text" name="admin_email" value="<?php echo $_SESSION['adminEmail'];?>" readonly> </td>
     </tr> 
     <tr>
         <td>Admin Key :</td>
-        <td><input class="hide " type="text" name="admin_key" value=" <?php echo $_SESSION['adminKey'] ; ?>" readonly> </td>
+        <td><input class="hide " type="text" name="admin_key" value="<?php echo $_SESSION['adminKey'];?>" readonly> </td>
     </tr>
     <tr>
         <td>Your CV :</td>
-        <td><a href= "<?php echo $_SESSION['adminCv'] ?>" target="_blank"> CV File  </a>  </td>
+        <td><a href= "<?php echo $_SESSION['adminCv'] ?>" target="_blank"> CV File </a>  </td>
+       
     </tr> 
 
   
@@ -61,16 +65,17 @@ include("../control/adminProfileUpdate.php");
 
 
 
+<td> <?php echo $admin_photofileError; ?> </td>
+<br>
+<td> <?php echo $admin_cvfileError; ?> </td>
 
 <div id="saveShow">
 <br>
 Select Photo : <input type="file" name="admin_photofile"> <br>
 Select CV : <input type="file" name="admin_cvfile">
-<br>
-<br>
+<br> <br>
 <input type="submit" value="Save" name ="Admin_update_data">
 <button id="cancelBtn" >Cancel</button>
-
 </div>
 
 

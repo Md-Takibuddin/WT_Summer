@@ -48,7 +48,7 @@ class database{
     }
 
     function updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conn){
-        $sql = "
+        $uSql = "
         UPDATE
               `admindata`
          SET
@@ -61,7 +61,9 @@ class database{
             `adminphoto` = '$adminPhoto'
          WHERE
             `adminemail` = '$adminEmail'";
-        if($conn->query($sql)){
+           $result= mysqli_query($conn,$uSql);
+
+        if($result==1){ 
             return true;
         }
         else {
