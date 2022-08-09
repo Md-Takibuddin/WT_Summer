@@ -1,6 +1,7 @@
 <?php
-include("../model/admindata.php");
 session_start();
+require_once("../model/admindata.php");
+
 
 $admindb = new database();
 $conObj=$admindb->openCon();
@@ -19,9 +20,12 @@ if ($result ->num_rows >0){
         $_SESSION['adminPassword'] = $myrow["adminpassword"];
         $_SESSION['adminPhoto'] = $myrow["adminphoto"];
         $_SESSION['adminCv'] = $myrow["admincv"];
+        $_SESSION['adminCv'] = $myrow["admincv"];
+        $_SESSION['adminKey'] = $myrow["adminkey"];
 
     }
 }
+mysqli_close($conObj);
 
 
 ?>

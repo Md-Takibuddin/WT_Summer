@@ -10,7 +10,8 @@ include("../control/admin_login.php");
     <body>
         <br>
     <h3>Welcome to Admin login. </h4>
-    <form  method="POST">
+    
+    <form  method="POST" enctype="multipart/form-data">
     <table>
     <tr>
         <td>Email: </td>

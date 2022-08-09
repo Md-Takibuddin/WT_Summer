@@ -15,10 +15,14 @@
       "adminsignup",
       "cvfile",
       "homephoto",
+      "inputfilds",
       "mobileno",
       "myrow",
       "photofile",
       "servername",
       "tmpdata"
+   ],
+   "cSpell.ignoreWords": [
+      "adminkey"
    ]
 }

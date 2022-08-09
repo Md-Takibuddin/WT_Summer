@@ -2,6 +2,8 @@
 
 class database{
 
+
+
     function openCon(){
         $servername = "localhost";
         $username = "root";
@@ -43,13 +45,34 @@ class database{
         
         $sql="SELECT * FROM `admindata` WHERE adminemail = '$adminEmail'";
         return $conn->query($sql);
+    }
 
+    function updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conn){
+        $sql = "
+        UPDATE
+              `admindata`
+         SET
+            `adminfname` = '$adminFName',
+            `adminlname` = '$adminLName',
+            `admindob` = '$adminDOB',
+            `adminaddress` = '$adminAddress',
+            `adminmobileno` = '$adminMobileNo',
+            `admincv` = '$adminCv',
+            `adminphoto` = '$adminPhoto'
+         WHERE
+            `adminemail` = '$adminEmail'";
+        if($conn->query($sql)){
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
 
 
     // function conClose(){
-    //     $conn ->close();
+    //   this->$conn ->close();
     // }
 
 
