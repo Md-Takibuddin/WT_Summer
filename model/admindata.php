@@ -35,6 +35,21 @@ class database{
 
     }
 
+    function checkMobileNo($adminMobileNo,$conn){
+
+        $sql="SELECT adminmobileno FROM `admindata` where adminmobileno = '$adminMobileNo'";
+        return $conn->query($sql);
+    
+    }
+    
+    function checkAdminKey($adminKey,$conn){
+
+        $sql="SELECT `key` FROM `adminkey` WHERE `key` LIKE BINARY '$adminKey'";
+        return $conn->query($sql);
+    
+    }
+    
+
     function checkLogin($adminGivenEmail,$adminGivenPassword,$conn){
 
         $sql ="SELECT adminemail,adminpassword FROM `admindata` WHERE adminemail='$adminGivenEmail' AND adminpassword='$adminGivenPassword'";

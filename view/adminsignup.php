@@ -18,7 +18,7 @@ include("../control/admin_signup.php");
 
     <tr>
         <td>First Name: </td>
-        <td><input class="signup" type="text" name="admin_fname" id="admin_fname" data-name ="fname" ></td>
+        <td><input class="signup" type="text" name="admin_fname" id="admin_fname" data-name ="fname"></td>
         <td> <?php echo $adminFNameError; ?> </td>
 
     </tr>
@@ -71,7 +71,7 @@ include("../control/admin_signup.php");
     <tr>
         <td>
             <input type="submit" value="Submit" name ="Admin_signup_submit">
-            <input type="reset" value="Reset" name= "Admin_signup_reset">
+            <input type="reset" id = "reset" value="Reset" name= "Admin_signup_reset">
         </td>
     </tr>
 
@@ -83,7 +83,20 @@ Go to <a href= "adminlogin.php"> Login <br> </a>
 <a href= "home.php"> Back to Home </a>
 </form>
 
+<p id="email_available" ></p>
+<p id="mobile_available" ></p>
+<p id="key_available" ></p>
+
 <script src="../javascript/signup.js"></script>
+
+<script>
+
+var tmp = localStorage.getItem('fname')
+console.log(tmp);
+document.getElementById("admin_fname").value=tmp;
+
+
+</script>
 
 </body>
 </html> 

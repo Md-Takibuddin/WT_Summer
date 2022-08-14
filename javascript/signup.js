@@ -1,8 +1,14 @@
 
 
 const x = document.querySelectorAll(".signup");
+const editButton=document.querySelector("#reset")
 let count;
+let t;
 
+function reset(){
+
+    localStorage.clear();
+}
 
 function checkFname(event){
 
@@ -10,7 +16,9 @@ function checkFname(event){
 
     if (fname.length > 1 && fname.match( /^[A-Za-z]+$/)){
 
-        event.target.style.border = "1px solid green"  ;
+        event.target.style.border = "1px solid green";
+        localStorage.setItem('fname',fname);
+
     }
     else  event.target.style.border = "1px solid red ";
 
@@ -52,7 +60,6 @@ function checkDob(event){
 
 function checkAddress(event){
 
-    console.log(event.target.value);
        if (event.target.value.length <5){
            event.target.style.border = "1px solid red "  ;
        }else  event.target.style.border = "1px solid green ";
@@ -64,29 +71,90 @@ function checkMobileNo(event){
 
     let mobile = event.target.value;
 
-       if (mobile.match(/^[0]{1}[1]{1}[0-9]{9}$/)){
-   
-   
-           console.log();
-           event.target.style.border = "1px solid green "  ;
-       }else  event.target.style.border = "1px solid red ";
-   
-   
-   }
+        if (mobile.match(/^[0]{1}[1]{1}[0-9]{9}$/)){
+
+            var mobileXHttp = new XMLHttpRequest();
+
+            mobileXHttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200){
+
+                    if(this.responseText== 'ok'){
+                        event.target.style.border = "1px solid green ";
+                    }else  event.target.style.border = "1px solid red ";
+                    
+                    document.getElementById("mobile_available").innerHTML=this.responseText;
+                }
+            }
+            mobileXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkMobileNo.php?n="+mobile, true);
+            mobileXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
+            mobileXHttp.send();
+                      
+        }
+
+        else{
+        console.log(document.getElementById("mobile_available").innerHTML="Invalid Mobile Number"); 
+        event.target.style.border = "1px solid red ";
+        }
+
+}
 
 
 function checkEmail(event){
 
     var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var mail = event.target.value;
 
-        if(event.target.value.match(mailFormat))
-        {
+        if(mail.match(mailFormat)){
 
-         event.target.style.border = "1px solid green "  ;
+            var mailXHttp = new XMLHttpRequest();
+
+            mailXHttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200){
+
+                    if(this.responseText== 'ok'){
+                        event.target.style.border = "1px solid green ";
+                    }else  event.target.style.border = "1px solid red ";
+                    
+                    document.getElementById("mobile_available").innerHTML=this.responseText;  
+                }
+            }
+
+            mailXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkEmail.php?q="+mail, true);
+            mailXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
+            mailXHttp.send();
+            
+           
         }
-        else  event.target.style.border = "1px solid red ";
-       
+
+        else{
+        console.log(document.getElementById("email_available").innerHTML="Invalid Email"); 
+        event.target.style.border = "1px solid red ";
+        }
 }
+
+
+function checkAdminKey(event){
+
+    var key = event.target.value;
+    var keyXHttp = new XMLHttpRequest();
+
+    keyXHttp.onreadystatechange=function(){
+
+        if(this.readyState==4 && this.status==200){
+            if(this.responseText== 'ok'){
+                event.target.style.border = "1px solid green ";
+            }else  event.target.style.border = "1px solid red ";
+            
+            document.getElementById("key_available").innerHTML=this.responseText;  
+        }
+    }
+
+    keyXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkAdminKey.php?k="+key, true);
+    keyXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
+    keyXHttp.send();
+}
+
+
 
 
 function checkPassword(event){
@@ -122,7 +190,7 @@ function xyz(event){
                     break;
         case "dob":
                     checkDob(event);
-                    break;        
+                    break;
         case "address":
                     checkAddress(event);
                     break; 
@@ -135,14 +203,16 @@ function xyz(event){
         case "password":
                     checkPassword(event);
                     break;
+        case "key":
+                      checkAdminKey(event);
+                    break;
         default : return;  
     }
-  console.log(event.target.dataset.name);
 }
-
-
 
 
 x.forEach((x_event)=>{
     x_event.addEventListener('focusout',xyz)
 })
+
+editButton.addEventListener("click",reset)
