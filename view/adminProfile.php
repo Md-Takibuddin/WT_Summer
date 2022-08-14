@@ -73,7 +73,11 @@ Select Photo : <input type="file" name="admin_photofile"> <br>
 Select CV : <input type="file" name="admin_cvfile">
 <br> <br>
 <input type="submit" value="Save" name ="Admin_update_data">
+<button id="changePass" >Change Password</button>
+
 <button id="cancelBtn" >Cancel</button>
+
+
 </div>
 
 

@@ -50,16 +50,6 @@ if (isset($_POST["Admin_update_data"])) {
     $adminPhoto = $_FILES["admin_photofile"]["name"];
 
 
-echo $adminFName ;
-echo $adminLName ;
-echo $adminDOB ;
-echo $adminAddress ;
-echo $adminMobileNo ;
-echo $adminEmail;
-echo $adminKey ;
-echo $adminCv ;
-echo $adminPhoto ;
-
     if (is_numeric($adminFName) || is_numeric($adminLName)) {
         $count++;
         $adminFNameError = "First name and Last Name should not contain numeric value";
@@ -138,10 +128,7 @@ echo $adminPhoto ;
 
 
 $admindb = new database();
- $conObj=$admindb->openCon();
-
- echo "+".$adminEmail."+";
-// $admindb->updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conObj);
+$conObj=$admindb->openCon();
 
     if($count == 0){ 
         if($admindb->updateAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminCv,$adminPhoto,$conObj) == true){
@@ -160,9 +147,10 @@ $admindb = new database();
         header("Location:../view/adminProfile.php");
     }
     else {
-        echo $dataError = "Please try again";
-        header("Location:../view/adminProfile.php");
+       $dataError = "Please try again";
     }
+
+    mysqli_close($conObj);
 
 }
 

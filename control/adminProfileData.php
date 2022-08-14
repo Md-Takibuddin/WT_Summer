@@ -20,13 +20,12 @@ if ($result ->num_rows >0){
         $_SESSION['adminPassword'] = $myrow["adminpassword"];
         $_SESSION['adminPhoto'] = $myrow["adminphoto"];
         $_SESSION['adminCv'] = $myrow["admincv"];
-        $_SESSION['adminCv'] = $myrow["admincv"];
         $_SESSION['adminKey'] = $myrow["adminkey"];
 
     }
 }
 
-// mysqli_close($conObj);
+mysqli_close($conObj);
 
 
 ?>
