@@ -1,6 +1,10 @@
 <?php
 include("../control/admin_login.php");
 ?>
+<head>
+    <link rel="stylesheet" href="../css/sign.css">
+
+</head>
 
 
 <html>
@@ -9,7 +13,7 @@ include("../control/admin_login.php");
 
     <body>
         <br>
-    <h3>Welcome to Admin login. </h4>
+    <h3>Welcome to Admin login </h4>
     
     <form  method="POST" enctype="multipart/form-data">
     <table>

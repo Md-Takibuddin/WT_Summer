@@ -10,7 +10,7 @@ include("../control/admin_signup.php");
 
 <h1> Admin Registration Form</h1>
 
-<form  method="POST" enctype="multipart/form-data" onsubmit ="return result()">
+<form  method="POST" enctype="multipart/form-data" onsubmit ="return submitBtn()">
 
 <?php echo $dataError; ?>
 
@@ -24,17 +24,17 @@ include("../control/admin_signup.php");
     </tr>
     <tr>
         <td>Last Name: </td>
-        <td><input class="signup" type="text" name="admin_lname" data-name ="lname"></td>
+        <td><input class="signup" type="text" name="admin_lname" id="admin_lname" data-name ="lname"></td>
         <td> <?php echo $adminLNameError; ?> </td>
     </tr> 
     <tr>
         <td>Date of Birth: </td>
-        <td><input class="signup" type="date" name="admin_dob" data-name ="dob"></td>
+        <td><input class="signup" type="date" name="admin_dob" id="admin_dob"  data-name ="dob"></td>
         <td> <?php echo $adminDOBError; ?> </td>
     </tr> 
     <tr>
         <td>Address: </td>
-        <td><input class="signup" type="text" name="admin_address" data-name ="address"></td>
+        <td><input class="signup" type="text" name="admin_address"  id="admin_address" data-name ="address"></td>
         <td> <?php echo $adminAddressError; ?> </td>
     </tr>
     <tr>
@@ -68,20 +68,20 @@ include("../control/admin_signup.php");
         <td> <?php echo $admin_photofileError; ?> </td>
         
     </tr> 
-    <tr>
-        <td>
-            <input type="submit" value="Submit" name ="Admin_signup_submit">
-            <input type="reset" id = "reset" value="Reset" name= "Admin_signup_reset">
-        </td>
-    </tr>
+
+    <input type="submit" id = "submit" value="Submit" name ="Admin_signup_submit">
+    <input type="reset" id = "reset" value="Reset" name= "Admin_signup_reset">
 
 
 </table>
+</form>
+
+
+
 <br>
 Go to <a href= "adminlogin.php"> Login <br> </a>
 <br>
 <a href= "home.php"> Back to Home </a>
-</form>
 
 <p id="email_available" ></p>
 <p id="mobile_available" ></p>
@@ -91,10 +91,23 @@ Go to <a href= "adminlogin.php"> Login <br> </a>
 
 <script>
 
-var tmp = localStorage.getItem('fname')
-console.log(tmp);
-document.getElementById("admin_fname").value=tmp;
+var tmpFname = sessionStorage.getItem('fname')
+document.getElementById("admin_fname").value=tmpFname;
 
+var tmpLname = sessionStorage.getItem('lname')
+document.getElementById("admin_lname").value=tmpLname;
+
+var tmpAddress = sessionStorage.getItem('address')
+document.getElementById("admin_address").value=tmpAddress;
+
+var tmpDob = sessionStorage.getItem('dob')
+document.getElementById("admin_dob").value=tmpDob;
+
+var tmpMobileNo = sessionStorage.getItem('mobileNo')
+document.getElementById("phone").value=tmpMobileNo;
+
+var tmpEmail = sessionStorage.getItem('email')
+document.getElementById("email").value=tmpEmail;
 
 </script>
 

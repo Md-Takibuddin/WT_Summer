@@ -100,27 +100,18 @@ if (isset($_POST["Admin_signup_submit"])) {
         $adminPasswordError = "Password can't be Empty <br>";
     }
     else {
-        $count++;
+        if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($adminPassword) < 8) {
+            $adminPasswordError = 'Password should be at least 8 characters in length and at least one upper case letter, one number, and one special character.';
+        }
+        else {
+            $count++;
+        }
     }
 
-    if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($adminPassword) < 8) {
-        $adminPasswordError = 'Password should be at least 8 characters in length and at least one upper case letter, one number, and one special character.';
-    }
-    else {
-        $count++;
-    }
 
     if (empty($adminKey)) {
         $adminKeyError = "Admin key can't be Empty";
     }
-    else {
-        if ($adminKey == "XYZ123") {
-            $count++;
-        }
-        else
-            $adminKeyError = "Wrong Admin key";
-    }
-
 
     if (!empty($adminCv)) {
             $cvName =  $_FILES["admin_cvfile"]["name"];
@@ -162,15 +153,15 @@ if (isset($_POST["Admin_signup_submit"])) {
     $admindb = new database();
     $conObj=$admindb->openCon();
     $result =$admindb->checkMail($adminEmail,$conObj);
-
-    if ($count !=10) {
+    echo $count;
+    if ($count !=8) {
         echo "Please Inter All Data";
     }
-    elseif($count == 10 && $result ->num_rows >0){
+    elseif($count == 8 && $result ->num_rows >0){
         echo "mail already exist. ";
     }
     
-    elseif($count == 10 && $result ->num_rows ==0) {
+    elseif($count == 8 && $result ->num_rows ==0) {
 
 
         if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj) == true){
