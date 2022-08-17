@@ -5,12 +5,13 @@ include("../control/adminProfileUpdate.php");
 ?>
 
 <html>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
     <a href="adminDashboard.php"> Back </a>
     <td> <?php echo $dataError; ?> </td>
 
 <body>
 <font size="10" color="forestgreen"><b>Profile</b></font>
+
 <form  method="POST" enctype="multipart/form-data">
 <table>
 
@@ -61,8 +62,6 @@ include("../control/adminProfileUpdate.php");
 
 </table>
 
-
-
 <td> <?php echo $admin_photofileError; ?> </td>
 <br>
 <td> <?php echo $admin_cvfileError; ?> </td>
@@ -72,12 +71,12 @@ include("../control/adminProfileUpdate.php");
 Select Photo : <input type="file" name="admin_photofile"> <br>
 Select CV : <input type="file" name="admin_cvfile">
 <br> <br>
+
 <input type="submit" value="Save" name ="Admin_update_data">
-<button id="changePass" >Change Password</button>
+<!-- <button onclick="location.href='changePassword.php'">Change Password</button> -->
 
+<button id="changePassword" >Change Password inside </button>
 <button id="cancelBtn" >Cancel</button>
-
-
 </div>
 
 
@@ -85,6 +84,7 @@ Select CV : <input type="file" name="admin_cvfile">
 
 <button class="edit ">Edit</button>
 </body>
+
 
 <script src="../javascript/edit.js" ></script>
 

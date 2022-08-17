@@ -87,6 +87,35 @@ class database{
 
     }
 
+    function checkOldPassword($adminEmail,$adminPassword,$conn){
+
+        $sql ="SELECT adminemail,adminpassword FROM `admindata` WHERE adminemail='$adminEmail' AND adminpassword='$adminPassword'";
+        return $conn->query($sql);
+    }
+
+    function changePassword($adminEmail,$password,$conn){
+        $uSql = "
+        UPDATE
+              `admindata`
+         SET
+            `adminpassword` = '$password'
+         WHERE
+            `adminemail` = '$adminEmail'";
+           $result= mysqli_query($conn,$uSql);
+
+        if($result==1){ 
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    
+
+
+
 
     // function conClose(){
     //   this->$conn ->close();
