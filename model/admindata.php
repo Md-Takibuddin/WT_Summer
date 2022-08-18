@@ -44,8 +44,16 @@ class database{
     
     function checkAdminKey($adminKey,$conn){
 
-        $sql="SELECT `key` FROM `adminkey` WHERE `key` LIKE BINARY '$adminKey'";
-        return $conn->query($sql);
+        $sql="DELETE FROM `adminkey` WHERE `adminkey`.`key` = '$adminKey'";
+
+        $result=mysqli_query($conn,$sql);
+
+        if($result==1){ 
+            return true;
+        }
+        else {
+            return false;
+        }
     
     }
     
@@ -104,6 +112,21 @@ class database{
            $result= mysqli_query($conn,$uSql);
 
         if($result==1){ 
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    function deleteAccount($mail,$pass,$conn){
+
+        $sql= "DELETE FROM `admindata` WHERE `admindata`.`adminemail` = '$mail'
+         and `admindata`.`adminpassword` = '$pass'";
+
+         $result= mysqli_query($conn,$sql);
+         if($result==1){ 
             return true;
         }
         else {

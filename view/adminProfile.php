@@ -73,14 +73,16 @@ Select CV : <input type="file" name="admin_cvfile">
 <br> <br>
 
 <input type="submit" value="Save" name ="Admin_update_data">
-<!-- <button onclick="location.href='changePassword.php'">Change Password</button> -->
 
-<button id="changePassword" >Change Password inside </button>
+<button id="changePassword" >Change Password </button>
 <button id="cancelBtn" >Cancel</button>
+<button id="delete" >Delete Account</button>
+
+
 </div>
-
-
 </form>
+<p id="demo"></p>
+
 
 <button class="edit ">Edit</button>
 </body>

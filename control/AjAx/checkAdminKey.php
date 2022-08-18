@@ -7,7 +7,7 @@ $admindb = new database();
 $conObj=$admindb->openCon();
 $result =$admindb->checkAdminKey($key,$conObj);
 
-if($result ->num_rows ==1){
+if($result == true){
     echo "ok";
 }
 else {

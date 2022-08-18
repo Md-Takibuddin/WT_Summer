@@ -3,6 +3,9 @@ const inputfilds=document.querySelectorAll(".select")
 const saveAndCancel = document.querySelector("#saveShow")
 const cancelBtn = document.querySelector("#cancelBtn")
 const changePassword = document.querySelector("#changePassword")
+const deleteAccount = document.querySelector("#delete")
+
+
 
 function editClick(){
     inputfilds.forEach((xyz)=>{
@@ -37,6 +40,18 @@ function changePass(event){
     window.location = "changePassword.php";
 }
 
+function deleteA(event){
+    event.preventDefault();
+    if (confirm("Are you sure that you want to delete your account?")){
+    window.location = "deleteAccount.php";
+    }
+    else{
+
+    }
+}
+
+
 editButton.addEventListener("click",editClick)
 cancelBtn.addEventListener("click",cancelClick)
 changePassword.addEventListener("click",changePass)
+deleteAccount.addEventListener("click",deleteA)
