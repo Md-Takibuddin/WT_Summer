@@ -98,7 +98,7 @@ function checkMobileNo(event,index){
             mobileXHttp.send();                     
         }
         else{
-        console.log(document.getElementById("mobile_available").innerHTML="Invalid Mobile Number"); 
+        
         event.target.style.border = "1px solid red ";
         arrayName[index]=false;
         }
@@ -129,11 +129,18 @@ function checkEmail(event,index){
             mailXHttp.send();        
         }
         else{
-        console.log(document.getElementById("email_available").innerHTML="Invalid Email"); 
+       
         event.target.style.border = "1px solid red ";
         arrayName[index]=false;
         }
 }
+
+
+
+function ChangeText(oFileInput, sTargetID) {
+    document.getElementById(sTargetID).value = oFileInput.value;
+}
+
 
 
 function checkAdminKey(event,index){
@@ -212,7 +219,6 @@ function xyz(event,index){
 
 
 
-console.log(arrayName);
 
 x.forEach((x_event,index)=>{
     x_event.addEventListener('focusout',(event)=>{
@@ -232,11 +238,6 @@ resetBtn.addEventListener("click",reset)
 let checker = arr => arr.every(v => v === true);
 function submitBtn(){
 
-  let flag =false;
-   console.log(arrayName);
-console.log(checker(arrayName));
-
-    console.log("flag",flag);
     return checker(arrayName);
 }
 

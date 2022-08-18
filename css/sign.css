@@ -17,6 +17,7 @@ position: absolute;
 transform: translate(-50%,-50%);
 left: 50%;
 top: 50%;
+
 }
 .background .shape{
 height: 200px;
@@ -52,9 +53,43 @@ left: 50%;
 border-radius: 10px;
 backdrop-filter: blur(10px);
 border: 2px solid rgba(255,255,255,0.1);
-box-shadow: 0 0 40px rgba(8,7,16,0.6);
+box-shadow: 10px 20px 30px rgba(12, 12, 12, 0.45);
 padding: 50px 35px;
+background: linear-gradient(#d2e6ff2a, #00000000);
+
 }
+
+
+
+
+.shape:first-child{
+    animation-name            : displaceContentDown;
+    animation-duration        : 50s;
+    animation-delay           : .5s;
+    animation-iteration-count : 1;
+    animation-fill-mode       : forwards;
+}
+@keyframes displaceContentDown {
+    from { transform : translateY(0em) }
+    to   { transform : translateY(30em) } /* slide down to make room for advertisements */
+}
+.shape:last-child{
+    animation-name            : displaceContentUp;
+    animation-duration        : 50s;
+    animation-delay           : .5s;
+    animation-iteration-count : 1;
+    animation-fill-mode       : forwards;
+}
+@keyframes displaceContentUp {
+    from { transform : translateY(0em) }
+    to   { transform : translateY(-30em); } /* slide down to make room for advertisements */
+}
+
+
+
+
+
+
 form *{
 font-family: 'Roboto',sans-serif;
 color: #ffffff;
@@ -95,30 +130,30 @@ input{
 display: block;
 height: 50px;
 width: 100%;
+border-radius: 5px;
 background-color: rgba(255,255,255,0.07);
-border-radius: 3px;
 padding: 0 10px;
 margin-top: 8px;
 font-size: 14px;
 font-weight: 300;
+
 }
 ::placeholder{
 color: #e5e5e578;
 }
 .button{
-margin-top: 30px;
-width: 100%;
-background-color: #ffffff;
-color: #030306;
-font-size: 18px;
-font-weight: 600;
-border-radius: 5px;
-cursor: pointer;
-}
-.button{
+    margin-top: 30px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #030306;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 10px 10px 20px rgba(12, 12, 12, 0.45);
+
     position: relative;
-   
-    border-radius: 4em;
+    border-radius: 5px;
     font-size: 16px;
     padding: 0.8em 1.8em;
     cursor:pointer;
