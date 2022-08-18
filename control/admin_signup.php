@@ -153,9 +153,8 @@ if (isset($_POST["Admin_signup_submit"])) {
     $admindb = new database();
     $conObj=$admindb->openCon();
     $result =$admindb->checkMail($adminEmail,$conObj);
-    echo $count;
     if ($count !=8) {
-        echo "Please Inter All Data";
+        echo "Please Inter All Data Correctly";
     }
     elseif($count == 8 && $result ->num_rows >0){
         echo "mail already exist. ";
@@ -164,11 +163,13 @@ if (isset($_POST["Admin_signup_submit"])) {
     elseif($count == 8 && $result ->num_rows ==0) {
 
 
-        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj) == true){
+        if($admindb->addAdmin($adminFName,$adminLName,$adminDOB,$adminAddress,$adminMobileNo,$adminEmail,$adminPassword,$adminKey,$adminCv,$adminPhoto,$conObj) == true
+        &&  $admindb->deleteKey($adminKey,$conObj)== true ){
             $signUpComplete == true;
             // $admindb->conClose();
             move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
             move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
+
 
             session_start();
             $_SESSION['adminFName'] = $adminFName;

@@ -44,17 +44,14 @@ class database{
     
     function checkAdminKey($adminKey,$conn){
 
-        $sql="DELETE FROM `adminkey` WHERE `adminkey`.`key` = '$adminKey'";
-
-        $result=mysqli_query($conn,$sql);
-
-        if($result==1){ 
-            return true;
-        }
-        else {
-            return false;
-        }
+        $sql="SELECT `key` FROM `adminkey` WHERE `key` LIKE BINARY '$adminKey'";
+        return $conn->query($sql);
     
+    }
+    function deleteKey($adminKey,$conn){
+        $sql="DELETE FROM `adminkey` WHERE `adminkey`.`key` = '$adminKey'";
+        return $conn->query($sql);
+
     }
     
 

@@ -7,12 +7,11 @@ $admindb = new database();
 $conObj=$admindb->openCon();
 $result =$admindb->checkAdminKey($key,$conObj);
 
-if($result == true){
-    echo "ok";
+if($result ->num_rows >0){
+  echo "ok";
 }
 else {
-  echo "Invalid Key";
+echo "Invalid";
 }
-
 
 ?>

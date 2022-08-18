@@ -63,7 +63,7 @@ session_start();
     <br>
     <a href= "home.php"> Back to Home </a>
 </big>
-
+<script>sessionStorage.clear();</script>
 </body>
 <html>
 
