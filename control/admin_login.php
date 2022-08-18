@@ -26,18 +26,10 @@ if (empty($_SESSION['email'])) {
                     $_SESSION['password'] = $adminGivenPassword;
                     header("location: ../view/adminDashboard.php");
 
+            }else{
+                $loginError = "Email Or Password is incorrect";
             }
 
-
-            // foreach ($adminJsonData as $data) {
-
-            //     if ($data["Email:"] == $adminGivenEmail && $data["Password:"] == $adminGivenPassword) {
-
-            //         $_SESSION['email'] = $data["Email:"];
-            //         $_SESSION['password'] = $data["Password:"];
-            //         header("location: ../view/adminDashboard.php");
-            //     }
-            // }
         }
         else {
             $loginError = "Email Or Password is empty.";
