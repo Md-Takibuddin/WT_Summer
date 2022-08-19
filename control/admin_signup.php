@@ -157,7 +157,7 @@ if (isset($_POST["Admin_signup_submit"])) {
         echo "Please Inter All Data Correctly";
     }
     elseif($count == 8 && $result ->num_rows >0){
-        echo "mail already exist. ";
+        echo "Mail already exist. ";
     }
     
     elseif($count == 8 && $result ->num_rows ==0) {

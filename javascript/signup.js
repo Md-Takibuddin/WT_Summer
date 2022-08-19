@@ -6,7 +6,59 @@ let t;
 
 function reset(){
     sessionStorage.clear();
+    document.getElementById("admin_fname").style.border = "none";
+    document.getElementById("admin_dob").style.border = "none";
+    document.getElementById("phone").style.border = "none";
+    document.getElementById("email").style.border = "none";
+    document.getElementById("cvFile").style.border = "none";
+    document.getElementById("admin_lname").style.border = "none";
+    document.getElementById("admin_address").style.border = "none";
+    document.getElementById("adminKey").style.border = "none";
+    document.getElementById("adminPass").style.border = "none";
+    document.getElementById("photoFile").style.border = "none";
+    
+
 }
+
+
+
+// function indexFalse(event,index){
+
+ 
+
+//     const dataSetName= event.target.dataset.name;
+
+//     console.log(arrayName[index]);
+
+//     switch(dataSetName){      
+//         case "fname":
+//             arrayName[index]=false;
+//                     break;
+//         case "lname":
+//             arrayName[index]=false;
+//             break;
+//         case "dob":
+//             arrayName[index]=false;
+//             break;
+//         case "address":
+//             arrayName[index]=false;
+//             break;
+//         case "email":
+//             arrayName[index]=false;
+//             break;
+//         case "mobileNo":
+//             arrayName[index]=false;
+//             break;
+//         case "password":
+//             arrayName[index]=false;
+//             break;
+//         case "key":
+//             arrayName[index]=false;
+//             break;
+//         default : return;
+//     }
+
+// }
 
 
 function checkFname(event,index){
@@ -228,7 +280,7 @@ x.forEach((x_event,index)=>{
 })
 
 
-resetBtn.addEventListener("click",reset)
+resetBtn.addEventListener("click",reset);
 
 // function test(){
 //     if(checkFname()==true){

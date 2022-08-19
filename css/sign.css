@@ -175,7 +175,7 @@ color: #e5e5e578;
     content: "";
     display: block;
     position: absolute;
-    border-radius: 4em;
+    border-radius: 5px;
     left: 0;
     top:0;
     width: 100%;
@@ -188,7 +188,7 @@ color: #e5e5e578;
   .button:active:after {
     box-shadow: 0 0 0 0 white;
     position: absolute;
-    border-radius: 4em;
+    border-radius: 5px;
     left: 0;
     top:0;
     opacity: 1;
@@ -198,4 +198,7 @@ color: #e5e5e578;
   .button:active {
     top: 1px;
   }
+  
+
+
   

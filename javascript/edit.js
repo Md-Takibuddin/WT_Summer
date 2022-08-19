@@ -8,6 +8,7 @@ const deleteAccount = document.querySelector("#delete")
 
 
 function editClick(){
+
     inputfilds.forEach((xyz)=>{
     
        xyz.classList.toggle("hide");
