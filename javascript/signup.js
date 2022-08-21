@@ -145,7 +145,7 @@ function checkMobileNo(event,index){
                     document.getElementById("mobile_available").innerHTML=this.responseText;
                 }
             }
-            mobileXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkMobileNo.php?n="+mobile, true);
+            mobileXHttp.open("GET", "https://localhost/WT_Summer/control/AjAx/checkMobileNo.php?n="+mobile, true);
             mobileXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
             mobileXHttp.send();                     
         }
@@ -164,8 +164,10 @@ function checkEmail(event,index){
             var mailXHttp = new XMLHttpRequest();
             mailXHttp.onreadystatechange=function(){
                 if(this.readyState==4 && this.status==200){
+                    console.log("connecyed");
                     if(this.responseText== 'ok'){
                         event.target.style.border = "1px solid green ";
+                        console.log("ok");
                         sessionStorage.setItem('email',mail);
                         arrayName[index]=true;
                     }
@@ -173,10 +175,10 @@ function checkEmail(event,index){
                         event.target.style.border = "1px solid red ";
                         arrayName[index]=false;
                     }                  
-                    document.getElementById("mobile_available").innerHTML=this.responseText;  
+                    document.getElementById("mobile_available").innerHTML=this.responseText;
                 }
             }
-            mailXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkEmail.php?q="+mail, true);
+            mailXHttp.open("GET", "https://localhost/WT_Summer/control/AjAx/checkEmail.php?q="+mail, true);
             mailXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
             mailXHttp.send();        
         }
@@ -213,7 +215,7 @@ function checkAdminKey(event,index){
 
         }
     }
-    keyXHttp.open("GET", "https://localhost/Bank%20System/control/AjAx/checkAdminKey.php?k="+key, true);
+    keyXHttp.open("GET", "https://localhost/WT_Summer/control/AjAx/checkAdminKey.php?k="+key, true);
     keyXHttp.setRequestHeader("Content-type","application/x-www-from-urlencoded");
     keyXHttp.send();
 

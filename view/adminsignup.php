@@ -47,7 +47,7 @@ include("../control/admin_signup.php");
     
 <div class="half">
         <label >Last Name: </label>
-        <input class="signup" type="text" name="admin_lname" id="admin_lname" data-name ="lname" placeholder="password">
+        <input class="signup" type="text" name="admin_lname" id="admin_lname" data-name ="lname" placeholder="Sarker">
         <?php echo $adminLNameError; ?> 
 
         <label >Address: </label>
