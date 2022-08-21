@@ -8,7 +8,7 @@ class database{
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "bankdatabase";
+        $dbname = "bankDataBase";
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -41,7 +41,8 @@ class database{
         return $conn->query($sql);
     
     }
-    
+
+
     function checkAdminKey($adminKey,$conn){
 
         $sql="SELECT `key` FROM `adminkey` WHERE `key` LIKE BINARY '$adminKey'";
@@ -135,6 +136,12 @@ class database{
     
 
 
+    function viewAllAdmin($conn){
+
+            $sql="SELECT * FROM `admindata`";
+            return $conn->query($sql);
+        
+    }
 
 
     // function conClose(){
