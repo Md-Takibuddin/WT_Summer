@@ -4,6 +4,7 @@ session_start();
 
 <html>
 <body>
+<link rel="stylesheet" href="../css/profile.css" />
 
 
 <font size="20" color="forestgreen"><b>Sign Up Successful</b></font>
@@ -11,51 +12,53 @@ session_start();
 <br>
 <br>
 <br>
-<table>
-
-    <tr>
-        <td>Photo: </td>
-        <td><img src="<?php echo $_SESSION['adminPhoto']; ?>" height="150" width="150">  </td>
-
-    </tr>
-    <tr>
-        <td>Name: </td>
-        <td> <?php echo $_SESSION['adminFName'] . " " . $_SESSION['adminLName'] . "<br>"; ?> </td>
-
-    </tr>
-    <tr>
-        <td>Date of Birth: </td>
-        <td> <?php echo $_SESSION['adminDOB'] . "<br>"; ?> </td>
-    </tr> 
-    <tr>
-        <td>Address: </td>
-        <td> <?php echo $_SESSION['adminAddress'] . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td>Mobile No: </td>
-        <td> <?php echo $_SESSION['adminMobileNo'] . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td>Email: </td>
-        <td> <?php echo $_SESSION['adminEmail'] . "<br>"; ?> </td>
-    </tr> 
-    <tr>
-        <td>Admin Key :</td>
-        <td> <?php echo $_SESSION['adminKey'] . "<br>"; ?> </td>
-    </tr>
-    <tr>
-        <td>Your CV :</td>
-        <td> <?php echo $_SESSION['admin_cvfileError'] . "<br>"; ?> </td>
-    </tr> 
-    <tr>
-        <td>Your Photo:</td>
-        <td> <?php echo $_SESSION['admin_photofileError'] . "<br>"; ?> </td>
-        
-    </tr> 
-
-
-</table>
-
+        <!-- content -->
+        <section class="content">
+          <div class="profile_container">
+            <header class="profile_header">
+              <figure>
+                <img
+                src="<?php echo $_SESSION['adminPhoto']; ?>"
+                  alt="User Image"
+                />
+              </figure>
+              <h1 class="name"><?php echo $_SESSION['adminFName']." ".$_SESSION['adminLName'];?></h1>
+              <h6 class="role">Admin</h6>
+            </header>
+            <section class="profile_filed_container">
+              <div>
+                <div class="input_field">
+                  <span class="label">Email</span>
+                  <span class="value"><?php echo $_SESSION['adminAddress'];?> </span>
+                </div>
+                <div class="input_field">
+                  <span class="label"> Date of Birth</span>
+                  <span class="value"><?php echo $_SESSION['adminDOB'];?></span>
+                </div>
+                <div class="input_field">
+                  <span class="label">Address</span>
+                  <span class="value"><?php echo $_SESSION['adminAddress'];?></span>
+                </div>
+              </div>
+              <div>
+                <div class="input_field">
+                  <span class="label">Mobile No</span>
+                  <span class="value"><?php echo $_SESSION['adminMobileNo'];?></span>
+                </div>
+                <div class="input_field">
+                  <span class="label">CV</span>
+                  <span>
+                    <a class="value" href="<?php echo $_SESSION['adminCv'] ?>" target="_blank">Click here </a>
+                  </span>
+                </div>
+                <div class="input_field">
+                  <span class="label">key</span>
+                  <span class="value"><?php echo $_SESSION['adminKey'];?></span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
 
 <br>
 <big>

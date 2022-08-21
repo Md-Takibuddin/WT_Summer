@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<?php
+include("../control/adminProfileData.php");
+include("../control/adminProfileUpdate.php");
+?>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />   
+     <a href="adminDashboard.php"> Back </a>
     <link rel="stylesheet" href="../css/profile.css" />
+    <link rel="stylesheet" href="../css/edit.css" />
+
     <title>Document</title>
   </head>
   <body>
@@ -59,8 +68,11 @@
         </div>
       </nav>
 
+
       <!-- Main Contents -->
+      
       <section class="content_body">
+ 
         <!-- Header -->
         <section class="header">
           <!-- Searchbar -->
@@ -87,60 +99,80 @@
             <div class="user">
               <figure>
                 <img
-                  src="../resources/static/users/Placeholder-1.png"
+                src="<?php echo $_SESSION['adminPhoto']; ?>"
                   alt="user image"
                 />
-                <figcaption>Rara Avis</figcaption>
+                <figcaption class="textBtn"><?php echo $_SESSION['adminFName'];?></figcaption>
               </figure>
             </div>
           </div>
         </section>
 
         <!-- content -->
+
         <section class="content">
           <div class="profile_container">
             <header class="profile_header">
-              <figure>
+              <div class ="crdBtn">
+              <button class="edit">Edit</button>
+              <button id="delete" >Delete Account</button>
+
+              <form  method="POST" enctype="multipart/form-data"> 
+              </div>
+                <figure>
                 <img
-                  src="../resources/static/users/Placeholder-3.png"
+                src="<?php echo $_SESSION['adminPhoto']; ?>"
                   alt="User Image"
                 />
               </figure>
-              <h1 class="name">Shan Hossian</h1>
-              <h6 class="role">Tea Boy</h6>
+              <h1 class="name"><?php echo $_SESSION['adminFName']." ".$_SESSION['adminLName'];?></h1>
+              <h6 class="role">Admin</h6>
             </header>
             <section class="profile_filed_container">
               <div>
                 <div class="input_field">
                   <span class="label">Email</span>
-                  <span class="value">shan@gmail.com </span>
+                  <input  class="hide " type="text" name="admin_email" value="<?php echo $_SESSION['adminEmail'];?>"readonly > 
                 </div>
                 <div class="input_field">
                   <span class="label"> Date of Birth</span>
-                  <span class="value">shan@gmail.com </span>
+                  <input class="hide select" type="text" name="admin_dob" value="<?php echo $_SESSION['adminDOB'];?>">
                 </div>
                 <div class="input_field">
                   <span class="label">Address</span>
-                  <span class="value">shan@gmail.com </span>
+                  <input class="hide select" type="text"  name="admin_address" value="<?php echo $_SESSION['adminAddress'];?>"> 
                 </div>
               </div>
               <div>
                 <div class="input_field">
                   <span class="label">Mobile No</span>
-                  <span class="value">01779011690</span>
+                  <td > <input class="hide select" type="text" name="admin_mobileno" value="<?php echo $_SESSION['adminMobileNo'];?>">
                 </div>
                 <div class="input_field">
                   <span class="label">CV</span>
                   <span>
-                    <a class="value" href="">Click here </a>
+                    <a class="value" href="<?php echo $_SESSION['adminCv'] ?>" target="_blank">Click here </a>
                   </span>
                 </div>
                 <div class="input_field">
                   <span class="label">key</span>
-                  <span class="value">1235sadsd</span>
+                  <span class="value"><?php echo $_SESSION['adminKey'];?></span>
                 </div>
               </div>
             </section>
+      <div id="saveShow">
+        Select Photo : <input type="file" name="admin_photofile"> <br>
+        Select CV : <input type="file" name="admin_cvfile">
+        <br> <br>
+
+        <input type="submit" value="Save" name ="Admin_update_data">
+
+        <button id="changePassword" >Change Password </button>
+        <button id="cancelBtn" >Cancel</button>
+        <button id="delete" >Delete Account</button>
+    </div>
+     </form>
+    
           </div>
         </section>
       </section>
@@ -148,4 +180,6 @@
 
     <script src="./script.js"></script>
   </body>
+  
+  <script src="../javascript/edit.js" ></script>
 </html>

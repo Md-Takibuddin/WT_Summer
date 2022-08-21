@@ -1,5 +1,6 @@
 <?php
 include("../control/dashboardCheck.php");
+include("../control/adminProfileData.php");
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +57,7 @@ include("../control/dashboardCheck.php");
           </a>
         </div>
         <div class="log_out_warpper">
-          <a class="nav_item" href="/">
+          <a class="nav_item" href="../control/logout.php">
             <img src="../resources/static/icons/log-out.png" alt="" />
             <span>Log Out</span>
           </a>
@@ -71,7 +72,7 @@ include("../control/dashboardCheck.php");
           <div class="searchbar_warpper">
             <div class="searchbar">
               <img src="../resources/static/icons/search.png" alt="search icon" />
-              <input placeholder="Seach here..." type="text" />
+              <input placeholder="Search here..." type="text" />
             </div>
           </div>
           <!-- CTAS -->
@@ -82,7 +83,7 @@ include("../control/dashboardCheck.php");
             <figure class="_icon">
               <img
                 src="../resources/static/icons/Notification.png"
-                alt="notiication icon"
+                alt="notification icon"
               />
             </figure>
             <figure class="_icon">
@@ -91,10 +92,14 @@ include("../control/dashboardCheck.php");
             <div class="user">
               <figure>
                 <img
-                  src="../resources/static/users/Placeholder-1.png"
+                 src="<?php echo $_SESSION['adminPhoto'];?>"
                   alt="user image"
                 />
-                <figcaption>Rara Avis</figcaption>
+                <figcaption>
+                  <form action="profile.php">
+                    <input class="textBtn" type="submit" value="<?php echo $_SESSION['adminFName'];?>" />
+                  </form> 
+                </figcaption>
               </figure>
             </div>
           </div>
@@ -113,7 +118,7 @@ include("../control/dashboardCheck.php");
                 >
               </header>
               <figure class="status_icon">
-                <img src="../resources/static/dashboard/background-1.png" alt="" />
+                <img src="../resources/static/dashboard/background-1.svg" alt="" />
               </figure>
             </div>
             <div class="status">
@@ -122,7 +127,7 @@ include("../control/dashboardCheck.php");
                 <span class="status_value">932</span>
               </header>
               <figure class="status_icon">
-                <img src="../resources/static/dashboard/background-2.png" alt="" />
+                <img src="../resources/static/dashboard/background-2.svg" alt="" />
               </figure>
             </div>
             <div class="status">
@@ -131,7 +136,7 @@ include("../control/dashboardCheck.php");
                 <span class="status_value">932</span>
               </header>
               <figure class="status_icon">
-                <img src="../resources/static/dashboard/background.png" alt="" />
+                <img src="../resources/static/dashboard/background-3.svg" alt="" />
               </figure>
             </div>
             <div class="status">
@@ -143,7 +148,7 @@ include("../control/dashboardCheck.php");
                 >
               </header>
               <figure class="status_icon">
-                <img src="../resources/static/dashboard/background-1.png" alt="" />
+                <img src="../resources/static/dashboard/background-4.svg" alt="" />
               </figure>
             </div>
           </section>

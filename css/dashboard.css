@@ -157,6 +157,15 @@ body {
 .header_ctas > .user > figure > img {
   height: 40px;
   width: 40px;
+  border-radius: 100%;
+  border: 2px  solid #2f80ed;;
+}
+.textBtn{
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 /* Header end */
 

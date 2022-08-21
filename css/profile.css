@@ -157,6 +157,7 @@ body {
 .header_ctas > .user > figure > img {
   height: 40px;
   width: 40px;
+  border-radius: 100%;
 }
 /* Header end */
 
@@ -200,6 +201,19 @@ body {
   height: 220px;
   border-radius: 100%;
 }
+.header_ctas > .user > figure > img {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: 2px  solid #2f80ed;;
+}
+.textBtn{
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
 
 .name {
   font-weight: 700;
@@ -223,4 +237,34 @@ body {
   font-weight: 700;
   font-size: 24px;
   color: var(--text-primary);
+}
+
+.hide{
+
+  background: transparent;
+  border: none;
+}
+#saveShow{
+  display: none;
+}
+
+
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.select{
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-primary);
+
 }
