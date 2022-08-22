@@ -39,13 +39,13 @@ $countPhoto=0;
 if (isset($_POST["Admin_update_data"])) {
 
 
-    $adminFName = $_POST["admin_fname"];
-    $adminLName = $_POST["admin_lname"];
+    $adminFName = $_SESSION['adminFName'];
+    $adminLName = $_SESSION['adminLName'];
     $adminDOB = $_POST["admin_dob"];
     $adminAddress = $_POST["admin_address"];
     $adminMobileNo = $_POST["admin_mobileno"];
     $adminEmail = $_POST["admin_email"];
-    $adminKey = $_POST["admin_key"];
+    $adminKey = $_SESSION['adminKey'];
     $adminCv = $_FILES["admin_cvfile"]["name"];
     $adminPhoto = $_FILES["admin_photofile"]["name"];
 
@@ -141,10 +141,10 @@ $conObj=$admindb->openCon();
             move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
             }   
 
-            header("Location:../view/adminProfile.php");
+            header("Location:../view/profile.php");
         }
         else $dataError = "Data not Updated";
-        header("Location:../view/adminProfile.php");
+        header("Location:../view/profile.php");
     }
     else {
        $dataError = "Please try again";

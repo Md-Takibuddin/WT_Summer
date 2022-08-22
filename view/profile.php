@@ -17,6 +17,7 @@ include("../control/adminProfileUpdate.php");
     <title>Document</title>
   </head>
   <body>
+    
     <main class="main_container">
       <!-- Sidebar -->
       <nav class="nav">
@@ -132,7 +133,7 @@ include("../control/adminProfileUpdate.php");
               <div>
                 <div class="input_field">
                   <span class="label">Email</span>
-                  <input  class="hide " type="text" name="admin_email" value="<?php echo $_SESSION['adminEmail'];?>"readonly > 
+                  <input  class="hide value " type="text" name="admin_email" value="<?php echo $_SESSION['adminEmail'];?>"readonly > 
                 </div>
                 <div class="input_field">
                   <span class="label"> Date of Birth</span>
@@ -166,7 +167,6 @@ include("../control/adminProfileUpdate.php");
         <br> <br>
 
         <input type="submit" value="Save" name ="Admin_update_data">
-
         <button id="changePassword" >Change Password </button>
         <button id="cancelBtn" >Cancel</button>
         <button id="delete" >Delete Account</button>

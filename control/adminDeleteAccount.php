@@ -23,7 +23,7 @@ if(isset($_POST["deleteAccount"])){
 
 if(isset($_POST["deleteAccountCancel"])){
 
-    header("Location:../view/adminProfile.php");
+    header("Location:../view/Profile.php");
 
 }
 

@@ -58,7 +58,7 @@ if(isset($_POST["saveNewPass"])){
 }
 if(isset($_POST["changePasswordCancel"])){
 
-    header("Location:../view/adminProfile.php");
+    header("Location:../view/Profile.php");
 
 }
 

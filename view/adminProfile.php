@@ -73,7 +73,7 @@ include("../control/adminProfileUpdate.php");
         </form>
         
         <p id="demo"></p>
-        <button class="edit ">Edit</button>
+        <button class="edit">Edit</button>
 </body>
 
 
