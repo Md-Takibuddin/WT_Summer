@@ -173,6 +173,28 @@ body {
   background: var(--bg-primary);
   border-radius: 28px;
   padding: 80px;
+  position: relative;
+}
+
+.btnContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.editBtn > img, .deleteBtn > img {
+  width: 20px;
+  height: 20px;
+  background: var(--bg-primary);
+  border: none;
+  outline: none;
+}
+
+.editBtn, .deleteBtn {
+  border: none;
+  cursor: pointer;
 }
 
 .profile_header {
@@ -240,14 +262,23 @@ body {
 }
 
 .hide{
-
   background: transparent;
   border: none;
 }
-#saveShow{
-  display: none;
+
+.top{
+  text-align: center;
+  padding-top: 20px;
+  width: 100%;
+  color: greenyellow;
 }
 
+#saveShow{
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--text-secondary);
+  display: none;
+}
 
 .button {
   border: none;
@@ -266,8 +297,44 @@ body {
   font-weight: 700;
   font-size: 24px;
   color: var(--text-primary);
-
+  border: none;
 }
 
+.saveShowBtn {
+  color: var(--primary-blue);
+  background: rgba(47, 128, 237, 0.1);
+  padding: 5px 15px;
+  border-radius: 30px;
+  margin: 10px;
+}
+.btn_container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.btn_container > a {
+  color: white;
+}
+.btn_container > span > a {
+  color: white;
+}
 
+/*  */
+
+.delete_account_container {
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_account_container > div {
+  padding: 25vh;
+}
+
+.delete_account_container > div > * {
+  color: white;
+}

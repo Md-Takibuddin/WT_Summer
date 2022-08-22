@@ -1,6 +1,6 @@
 <?php
 
-class database{
+class eDatabase{
 
 
 
@@ -32,9 +32,9 @@ class database{
         }
 
         
-    function addEmployee($eName,$ePhone,$eAddress,$eMail,$eJobTitle,$ePhoto,$eSalary,$eDob,$eLname,$eCv,$conn){
-        $sql = " INSERT INTO `employeedata`(`eName`, `ePhone`, `eAddress`, `eMail`, `eJobTitle`, `ePhoto`, `eSalary`, `eDob`, `eLname`, `eCv`) 
-                                   VALUES ('$eName','$ePhone','$eAddress','$eMail','$eJobTitle','$ePhoto','$eSalary','$eDob','$eLname','$eCv')";
+    function addEmployee($eName,$eLname,$ePhone,$eAddress,$eMail,$eJobTitle,$ePhoto,$eSalary,$eDob,$eCv,$conn){
+        $sql = " INSERT INTO `employeedata`(`eFName`,`eLName`, `ePhone`, `eAddress`, `eMail`, `eJobTitle`, `ePhoto`, `eSalary`, `eDob`, `eCv`) 
+                                   VALUES ('$eName','$eLname','$ePhone','$eAddress','$eMail','$eJobTitle','$ePhoto','$eSalary','$eDob','$eCv')";
         
         
         if($conn->query($sql)){
@@ -45,6 +45,12 @@ class database{
         }
 
     }
+    function viewAllEmployee($conn){
+
+        $sql="SELECT * FROM `employeedata`";
+        return $conn->query($sql);
+    
+}
 
         
 

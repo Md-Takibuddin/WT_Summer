@@ -8,23 +8,16 @@ include("../control/adminDeleteAccount.php");
 
 <html>
 <title>Delete Account</title>
-
-
     <body>
-        <br>
-
-    <form  method="POST">
-    <p> Please enter your password to continue </p> 
-    Password :
-    <input type="password" name="confirmPassword">
-    <font color="RED"><?php echo $deleteAccountError; ?></font> 
-    <br>
-  
-    <input type="submit" value="Delete Account" name ="deleteAccount">
-    <input type="submit" value="Cancel" name= "deleteAccountCancel">
-  
-  
-    </form>
-
+      <form class="delete_account_container" method="POST">
+        <div>
+            <p> Please enter your password to continue </p> 
+            Password :
+            <input type="password" name="confirmPassword">
+            <h2><?php echo $deleteAccountError; ?></font>   
+            <input type="submit" value="Delete Account" name ="deleteAccount">
+            <input type="submit" value="Cancel" name= "deleteAccountCancel">
+        </div>
+        </form>
     </body>
 </html>

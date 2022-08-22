@@ -3,15 +3,11 @@ session_start();
 ?>
 
 <html>
-<body>
-<link rel="stylesheet" href="../css/profile.css" />
-
-
-<font size="20" color="forestgreen"><b>Sign Up Successful</b></font>
-<br>
-<br>
-<br>
-<br>
+  <head>
+    <link rel="stylesheet" href="../css/profile.css" />
+  </head>
+    <body>
+      <h1 class="top">Sign Up Successful</h1>
         <!-- content -->
         <section class="content">
           <div class="profile_container">
@@ -60,12 +56,10 @@ session_start();
           </div>
         </section>
 
-<br>
-<big>
-    Go to <a href= "adminlogin.php"> Login <br> </a>
-    <br>
-    <a href= "home.php"> Back to Home </a>
-</big>
+        <div class="btn_container">
+         <span>Go to <a href= "adminlogin.php"> Login </a></span>  
+          <a href= "home.php"> Back to Home </a>
+      </div>
 <script>sessionStorage.clear();</script>
 </body>
 <html>

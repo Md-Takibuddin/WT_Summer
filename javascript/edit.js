@@ -1,30 +1,30 @@
-const editButton=document.querySelector(".edit")
+const editButton=document.querySelector(".editBtn")
 const inputfilds=document.querySelectorAll(".select") 
-const saveAndCancel = document.querySelector("#saveShow")
+const saveShow = document.querySelector("#saveShow")
 const cancelBtn = document.querySelector("#cancelBtn")
 const changePassword = document.querySelector("#changePassword")
-const deleteAccount = document.querySelector("#delete")
+const deleteBtn = document.querySelector(".deleteBtn")
 
-
-
-function editClick(){
-
+function editClick(e){
+    e.preventDefault();
     inputfilds.forEach((xyz)=>{
-    
        xyz.classList.toggle("hide");
-    
        if(xyz.classList.contains("hide")){
         xyz.readOnly=true;
        }
-       else xyz.readOnly=false;
+       else {
+        xyz.style.background = "rgba(47, 128, 237, 0.1)";
+        xyz.style.padding = "5px 15px";
+        xyz.readOnly=false;
+       }
     })
-    saveAndCancel.id="";
+
+    saveShow.style.display = "block";
     editButton.style.display="none";
 }
 
 function cancelClick(){
-
-    saveAndCancel.id="saveShow";
+    saveShow.style.display = "none";
     editButton.style.display="block";
 
     inputfilds.forEach((xyz)=>{
@@ -41,13 +41,13 @@ function changePass(event){
     window.location = "changePassword.php";
 }
 
-function deleteA(event){
-    event.preventDefault();
+function deleteAccount(event){
+    event.preventDefault()
     if (confirm("Are you sure that you want to delete your account?")){
-    window.location = "deleteAccount.php";
+       window.location = "deleteAccount.php";
     }
     else{
-
+        console.log("DIDNT WORKED");
     }
 }
 
@@ -55,4 +55,4 @@ function deleteA(event){
 editButton.addEventListener("click",editClick)
 cancelBtn.addEventListener("click",cancelClick)
 changePassword.addEventListener("click",changePass)
-deleteAccount.addEventListener("click",deleteA)
+deleteBtn.addEventListener("click",deleteAccount)

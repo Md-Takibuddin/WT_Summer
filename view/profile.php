@@ -18,7 +18,7 @@ include("../control/adminProfileUpdate.php");
   </head>
   <body>
     
-    <main class="main_container">
+  <main class="main_container">
       <!-- Sidebar -->
       <nav class="nav">
         <!-- Logo -->
@@ -30,21 +30,27 @@ include("../control/adminProfileUpdate.php");
 
         <!-- Nav Links  -->
         <div class="nav_items_wrapper">
-          <a href="/" class="nav_item">
+          <a href="adminDashboard.php" class="nav_item">
             <figure class="nav_icon">
               <img src="../resources/static/icons/home.png" alt="home-icon" />
             </figure>
             <span>Dashboard</span>
           </a>
-          <a href="/" class="nav_item">
+          <a href="underConstruction.php" class="nav_item">
             <figure class="nav_icon">
-              <img src="../resources/static/icons/balance.png" alt="home-icon" />
+              <img
+                src="../resources/static/icons/balance.png"
+                alt="home-icon"
+              />
             </figure>
             <span>Balance</span>
           </a>
-          <a href="/" class="nav_item">
+          <a href="underConstruction.php" class="nav_item">
             <figure class="nav_icon">
-              <img src="../resources/static/icons/invoice.png" alt="home-icon" />
+              <img
+                src="../resources/static/icons/invoice.png"
+                alt="home-icon"
+              />
             </figure>
             <span>Invoices</span>
           </a>
@@ -54,9 +60,12 @@ include("../control/adminProfileUpdate.php");
             </figure>
             <span>Cards</span>
           </a>
-          <a href="/" class="nav_item">
+          <a href="underConstruction.php" class="nav_item">
             <figure class="nav_icon">
-              <img src="../resources/static/icons/transection.png" alt="home-icon" />
+              <img
+                src="../resources/static/icons/transection.png"
+                alt="home-icon"
+              />
             </figure>
             <span>Transaction</span>
           </a>
@@ -69,18 +78,22 @@ include("../control/adminProfileUpdate.php");
         </div>
       </nav>
 
-
       <!-- Main Contents -->
-      
+
       <section class="content_body">
- 
+
+      
+
         <!-- Header -->
         <section class="header">
           <!-- Searchbar -->
           <div class="searchbar_warpper">
             <div class="searchbar">
-              <img src="../resources/static/icons/search.png" alt="search icon" />
-              <input placeholder="Seach here..." type="text" />
+              <img
+                src="../resources/static/icons/search.png"
+                alt="search icon"
+              />
+              <input placeholder="Search here..." type="text" />
             </div>
           </div>
           <!-- CTAS -->
@@ -95,15 +108,20 @@ include("../control/adminProfileUpdate.php");
               />
             </figure>
             <figure class="_icon">
-              <img src="../resources/static/icons/Setting.png" alt="setting icon" />
+              <img
+                src="../resources/static/icons/Setting.png"
+                alt="setting icon"
+              />
             </figure>
             <div class="user">
               <figure>
                 <img
-                src="<?php echo $_SESSION['adminPhoto']; ?>"
+                  src="<?php echo $_SESSION['adminPhoto']; ?>"
                   alt="user image"
                 />
-                <figcaption class="textBtn"><?php echo $_SESSION['adminFName'];?></figcaption>
+                <figcaption class="textBtn">
+                  <?php echo $_SESSION['adminFName'];?>
+                </figcaption>
               </figure>
             </div>
           </div>
@@ -112,47 +130,82 @@ include("../control/adminProfileUpdate.php");
         <!-- content -->
 
         <section class="content">
-          <div class="profile_container">
+          <form method="POST" enctype="multipart/form-data" class="profile_container">
+         
+          <!-- BTN -->
+         <div class="btnContainer">
+              <button class="editBtn">
+                <img src="../resources/static/icons/edit.png" alt="icon">
+              </button>
+              <button class="deleteBtn">
+                <img src="../resources/static/icons/delete.png" alt="icon">
+              </button>
+            </div>
             <header class="profile_header">
-              <div class ="crdBtn">
-              <button class="edit">Edit</button>
-              <button id="delete" >Delete Account</button>
-
-              <form  method="POST" enctype="multipart/form-data"> 
-              </div>
-                <figure>
+              <figure>
                 <img
-                src="<?php echo $_SESSION['adminPhoto']; ?>"
+                  src="<?php echo $_SESSION['adminPhoto']; ?>"
                   alt="User Image"
                 />
               </figure>
-              <h1 class="name"><?php echo $_SESSION['adminFName']." ".$_SESSION['adminLName'];?></h1>
+              <h1 class="name">
+                <?php echo $_SESSION['adminFName']." ".$_SESSION['adminLName'];?>
+              </h1>
               <h6 class="role">Admin</h6>
             </header>
             <section class="profile_filed_container">
               <div>
                 <div class="input_field">
                   <span class="label">Email</span>
-                  <input  class="hide value " type="text" name="admin_email" value="<?php echo $_SESSION['adminEmail'];?>"readonly > 
+                  <input
+                    class="hide value"
+                    type="text"
+                    name="admin_email"
+                    value="<?php echo $_SESSION['adminEmail'];?>"
+                    readonly
+                  />
                 </div>
                 <div class="input_field">
                   <span class="label"> Date of Birth</span>
-                  <input class="hide select" type="text" name="admin_dob" value="<?php echo $_SESSION['adminDOB'];?>">
+                  <input
+                    class="hide select"
+                    type="text"
+                    name="admin_dob"
+                    value="<?php echo $_SESSION['adminDOB'];?>"
+                  />
                 </div>
                 <div class="input_field">
                   <span class="label">Address</span>
-                  <input class="hide select" type="text"  name="admin_address" value="<?php echo $_SESSION['adminAddress'];?>"> 
+                  <input
+                    class="hide select"
+                    type="text"
+                    name="admin_address"
+                    value="<?php echo $_SESSION['adminAddress'];?>"
+                  />
                 </div>
               </div>
               <div>
                 <div class="input_field">
                   <span class="label">Mobile No</span>
-                  <td > <input class="hide select" type="text" name="admin_mobileno" value="<?php echo $_SESSION['adminMobileNo'];?>">
+                  <td>
+                    <input
+                      class="hide select"
+                      type="text"
+                      name="admin_mobileno"
+                      value="<?php echo $_SESSION['adminMobileNo'];?>"
+                    />
+                  </td>
                 </div>
+
                 <div class="input_field">
                   <span class="label">CV</span>
                   <span>
-                    <a class="value" href="<?php echo $_SESSION['adminCv'] ?>" target="_blank">Click here </a>
+                    <a
+                      class="value"
+                      href="<?php echo $_SESSION['adminCv'] ?>"
+                      target="_blank"
+                      >Click here
+                    </a>
                   </span>
                 </div>
                 <div class="input_field">
@@ -161,18 +214,17 @@ include("../control/adminProfileUpdate.php");
                 </div>
               </div>
             </section>
-      <div id="saveShow">
-        Select Photo : <input type="file" name="admin_photofile"> <br>
-        Select CV : <input type="file" name="admin_cvfile">
-        <br> <br>
+            
+            <div id="saveShow">
+                Select Photo : <input type="file" name="admin_photofile"> <br>
+                Select CV : <input type="file" name="admin_cvfile">
+                <br> <br>
 
-        <input type="submit" value="Save" name ="Admin_update_data">
-        <button id="changePassword" >Change Password </button>
-        <button id="cancelBtn" >Cancel</button>
-        <button id="delete" >Delete Account</button>
-    </div>
-     </form>
-    
+                <input class="saveShowBtn" type="submit" value="Save" name ="Admin_update_data">
+                <button class="saveShowBtn" id="changePassword" >Change Password </button>
+                <button class="saveShowBtn" id="cancelBtn" >Cancel</button>
+                <!-- <button id="delete" >Delete Account</button> -->
+           </div>
           </div>
         </section>
       </section>
@@ -183,3 +235,4 @@ include("../control/adminProfileUpdate.php");
   
   <script src="../javascript/edit.js" ></script>
 </html>
+

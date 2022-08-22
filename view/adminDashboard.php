@@ -1,6 +1,7 @@
 <?php
 include("../control/dashboardCheck.php");
 include("../control/adminProfileData.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ include("../control/adminProfileData.php");
 
         <!-- Nav Links  -->
         <div class="nav_items_wrapper">
-          <a href="/" class="nav_item">
+          <a href="adminDashboard.php" class="nav_item">
             <figure class="nav_icon">
               <img src="../resources/static/icons/home.png" alt="home-icon" />
             </figure>
@@ -112,8 +113,8 @@ include("../control/adminProfileData.php");
             <div class="status">
               <header>
                 <h6 class="status_header">Total Deposit</h6>
-                <span class="status_value"
-                  >1.234 <br />
+                <span class="status_value">30565
+                  <br/>
                   BDT</span
                 >
               </header>
@@ -124,7 +125,10 @@ include("../control/adminProfileData.php");
             <div class="status">
               <header>
                 <h6 class="status_header">Total Employee</h6>
-                <span class="status_value">932</span>
+                <span class="status_value">13
+
+                
+                </span>
               </header>
               <figure class="status_icon">
                 <img src="../resources/static/dashboard/background-2.svg" alt="" />
@@ -133,7 +137,7 @@ include("../control/adminProfileData.php");
             <div class="status">
               <header>
                 <h6 class="status_header">Loan Pending</h6>
-                <span class="status_value">932</span>
+                <span class="status_value">8</span>
               </header>
               <figure class="status_icon">
                 <img src="../resources/static/dashboard/background-3.svg" alt="" />
@@ -143,8 +147,8 @@ include("../control/adminProfileData.php");
               <header>
                 <h6 class="status_header">Unpaid Loan</h6>
                 <span class="status_value">
-                  1.234 <br />
-                  BDT</span
+                  6 <br />
+                  </span
                 >
               </header>
               <figure class="status_icon">
@@ -174,24 +178,25 @@ include("../control/adminProfileData.php");
 
               <?php
                  
-                  require_once("../model/admindata.php");
-                  $admindb = new database();
+                  require_once("../model/employeeData.php");
+                  $admindb = new eDatabase();
                   $conObj=$admindb->openCon();
-                  $result = $admindb->viewAllAdmin($conObj);
+                  $result = $admindb->viewAllEmployee($conObj);
 
                   if ($result ->num_rows >0){
 
                   while ($myrow = $result ->fetch_assoc()){
                       echo "<li class=list_item><div class=list_item_content><figure><img src=";
-                      echo $myrow["adminphoto"]." alt=user /></figure>";
+                      echo $myrow["ePhoto"]." alt=user /></figure>";
                       echo "<span> <span class=list_item_header>";
-                      echo $myrow["adminfname"]." ".$myrow["adminlname"] ."</span>";
-                      echo "<p class=list_item_description>".$myrow["adminemail"]."</p></span></div>"; 
+                      echo $myrow["eFName"]." ".$myrow["eLName"] ."</span>";
+                      echo "<p class=list_item_description>".$myrow["eJobTitle"]."</p></span></div>"; 
                       echo "<span class=list_item_date>Show</span></li>";
                   }
                 }
                 mysqli_close($conObj);       
              ?>
+
               </ul>
               <button class="lists_cta_btn">View More</button>
             </div>
@@ -212,57 +217,27 @@ include("../control/adminProfileData.php");
                </a>    
               </form>
               <ul class="list_item_container">
-                <li class="list_item">
-                  <div class="list_item_content">
-                    <figure>
-                      <img
-                        src="../resources/static/users/Placeholder-3.png"
-                        alt="user"
-                      />
-                    </figure>
-                    <span>
-                      <span class="list_item_header">Samantha William</span>
-                      <p class="list_item_description">
-                        Lorem ipsum dolor sit amet...
-                      </p>
-                    </span>
-                  </div>
-                  <span class="list_item_date">12:45 PM</span>
-                </li>
-                <li class="list_item">
-                  <div class="list_item_content">
-                    <figure>
-                      <img
-                        src="../resources/static/users/Placeholder-3.png"
-                        alt="user"
-                      />
-                    </figure>
-                    <span>
-                      <span class="list_item_header">Samantha William</span>
-                      <p class="list_item_description">
-                        Lorem ipsum dolor sit amet...
-                      </p>
-                    </span>
-                  </div>
-                  <span class="list_item_date">12:45 PM</span>
-                </li>
-                <li class="list_item">
-                  <div class="list_item_content">
-                    <figure>
-                      <img
-                        src="../resources/static/users/Placeholder.png"
-                        alt="user"
-                      />
-                    </figure>
-                    <span>
-                      <span class="list_item_header">Samantha William</span>
-                      <p class="list_item_description">
-                        Lorem ipsum dolor sit amet...
-                      </p>
-                    </span>
-                  </div>
-                  <span class="list_item_date">12:45 PM</span>
-                </li>
+              <?php
+                 
+                 require_once("../model/customerData.php");
+                 $admindb = new cDatabase();
+                 $conObj=$admindb->openCon();
+                 $result = $admindb->viewAllCustomer($conObj);
+
+                 if ($result ->num_rows >0){
+
+                 while ($myrow = $result ->fetch_assoc()){
+                     echo "<li class=list_item><div class=list_item_content><figure><img src=";
+                     echo "../files/photos/";
+                     echo $myrow["cName"].".jpg alt=user /></figure>";
+                     echo "<span> <span class=list_item_header>";
+                     echo $myrow["cName"] ."</span>";
+                     echo "<p class=list_item_description>".$myrow["CAccNo"]."</p></span></div>"; 
+                     echo "<span class=list_item_date>Show</span></li>";
+                 }
+               }
+               mysqli_close($conObj);       
+            ?>
               </ul>
               <button class="lists_cta_btn">View More</button>
             </div>

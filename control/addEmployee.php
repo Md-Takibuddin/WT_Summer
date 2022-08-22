@@ -1,48 +1,47 @@
 <?php
-include("../model/employeeData.php");
+require_once("../model/employeeData.php");
 $eName=$ePhone=$eAddress=$eMail=$eJobTitle=$ePhoto=$eSalary=$eDob=$eLname=$eCv=$conObj="";
 
 if(isset($_POST["Admin_signup_submit"])){
 
     $eName=$_POST["fname"];
-    $ePhone=$_POST["phone"];
+    $ePhone=$_POST["admin_mobileno"];
     $eAddress=$_POST["address"];
-    $eMail=$_POST["email"];
+    $eMail=$_POST["admin_email"];
     $eJobTitle=$_POST["jobTitle"];
     $eSalary=$_POST["salary"];
     $eDob=$_POST["dob"];
     $eLname=$_POST["lname"];
-    $eCv=$_POST[""];
-    $ePhoto=$_POST[""];
+    $eCv= $adminCv = "../files/cv/" .  $eName . "_" . date("Y-m-d") . ".pdf";
+    $ePhoto="../files/photos/" . $eName . "_" . date("Y-m-d") . ".jpg";
 
 
   
 
-    $admindb = new database();
+    $admindb = new eDatabase();
     $conObj=$admindb->openCon();
-    if($admindb->addEmployee($eName,$ePhone,$eAddress,$eMail,$eJobTitle,$ePhoto,$eSalary,$eDob,$eLname,$eCv,$conObj) == true
-    &&  $admindb->deleteKey($adminKey,$conObj)== true ){
+    if($admindb->addEmployee($eName,$eLname,$ePhone,$eAddress,$eMail,$eJobTitle,$ePhoto,$eSalary,$eDob,$eCv,$conObj) == true ){
         $signUpComplete == true;
         // $admindb->conClose();
-        move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $adminFName . "_" . date("Y-m-d") . ".pdf");
-        move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $adminFName . "_" . date("Y-m-d") . ".jpg");
-
+       if ( move_uploaded_file($_FILES["admin_cvfile"]["tmp_name"], "../files/cv/" . $eName . "_" . date("Y-m-d") . ".pdf")==true &&
+        move_uploaded_file($_FILES["admin_photofile"]["tmp_name"], "../files/photos/" . $eName . "_" . date("Y-m-d") . ".jpg")==true){
+        
 
         session_start();
-        $_SESSION['adminFName'] = $adminFName;
-        $_SESSION['adminLName'] = $adminLName;
-        $_SESSION['adminDOB'] = $adminDOB;
-        $_SESSION['adminAddress'] = $adminAddress;
-        $_SESSION['adminMobileNo'] = $adminMobileNo;
-        $_SESSION['adminEmail'] = $adminEmail;
-        $_SESSION['adminPassword'] = $adminPassword;
-        $_SESSION['admin_cvfileError'] = $admin_cvfileError;
-        $_SESSION['admin_photofileError'] = $admin_photofileError;
-        $_SESSION['adminKey'] = $adminKey;
-        $_SESSION['adminPhoto'] = $adminPhoto;
-        $_SESSION['adminCv'] = $adminCv;
+        $_SESSION['eFName'] = $eName;
+        $_SESSION['eLName'] = $eLname;
+        $_SESSION['eDOB'] = $eDob;
+        $_SESSION['eAddress'] = $eAddress;
+        $_SESSION['eMobileNo'] = $ePhone;
+        $_SESSION['eEmail'] = $eMail;
+        $_SESSION['eJobTitle'] = $eJobTitle;
+        $_SESSION['eSalary'] = $eSalary;
+        $_SESSION['ePhoto'] = $ePhoto;
+        $_SESSION['eCv'] = $eCv;
 
-        header("Location:../view/adminSignUpComplete.php");
+        header("Location:../view/employeeSignUpComplete.php");
+        }
+
     }
     else {
         echo "Sign Up Failed";

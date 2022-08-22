@@ -2,8 +2,6 @@
 
 class database{
 
-
-
     function openCon(){
         $servername = "localhost";
         $username = "root";

@@ -41,7 +41,7 @@ include("../control/addEmployee.php");
     
 <div class="half">
         <label >Last Name: </label>
-        <input class="addEmployee" type="text" name="lname" id="admin_lname" data-name ="lname" placeholder="password">
+        <input class="addEmployee" type="text" name="lname" id="admin_lname" data-name ="lname" placeholder="Khan">
        
         <label >Address: </label>
         <input class="addEmployee" type="text" name="address"  id="admin_address" data-name ="address" placeholder = "Current address">
@@ -79,6 +79,7 @@ include("../control/addEmployee.php");
 </form>
 
 <script src="../javascript/addEmployee.js"></script>
+
 
 <script>
 
